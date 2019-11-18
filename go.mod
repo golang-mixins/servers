@@ -1,4 +1,4 @@
-module github.com/antparcse/servers
+module github.com/golang-mixins/servers
 
 go 1.13
 
