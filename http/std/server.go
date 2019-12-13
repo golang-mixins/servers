@@ -98,7 +98,6 @@ func (s *Server) Stop(ctx context.Context) error {
 	}
 
 	closing := make(chan error)
-	defer close(closing)
 
 	timer := time.NewTimer(s.stopTimeout)
 	defer timer.Stop()
@@ -110,6 +109,7 @@ func (s *Server) Stop(ctx context.Context) error {
 		}
 		s.http.SetKeepAlivesEnabled(false)
 		closing <- err
+		close(closing)
 	}()
 
 	select {
